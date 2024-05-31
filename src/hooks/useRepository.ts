@@ -1,14 +1,14 @@
-import * as SecureStore from "expo-secure-store";
 import { AppError } from "models/AppError";
 import { AppSuccess } from "models/AppSuccess";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-type GetRegisterReturn<T> = Promise<T | AppError | undefined>;
+type GetRegisterReturn<T> = Promise<T | AppError>;
 
 export function useRepository(storeKey: string) {
 
     const getRegister = async <T> (): GetRegisterReturn<T> => {
         try {
-            const store: string | null = await SecureStore.getItemAsync(storeKey);
+            const store: string | null = await AsyncStorage.getItem(storeKey);
 
             if(store === null) return new AppError(
                 "Não foi possível encontrar o registro!",
@@ -27,7 +27,7 @@ export function useRepository(storeKey: string) {
         try {
             const dataToString = JSON.stringify(data);
 
-            await SecureStore.setItemAsync(storeKey, dataToString);
+            await AsyncStorage.setItem(storeKey, dataToString);
             
             return new AppSuccess("Item salvo com sucesso!");
         } catch (error) {
@@ -37,7 +37,7 @@ export function useRepository(storeKey: string) {
 
     const deleteRegister = async () => {
         try {
-            await SecureStore.deleteItemAsync(storeKey);
+            await AsyncStorage.removeItem(storeKey);
 
             return new AppSuccess("Item removido com sucesso!");
         } catch (error) {

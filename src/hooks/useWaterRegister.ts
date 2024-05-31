@@ -41,6 +41,9 @@ export function useWaterRegister () {
         if (store instanceof AppError) {
 
             if (store.cause === "unstored") {
+
+                setWaterIngestedToday(amount);
+
                 return setRegister<WaterIngestedRegister[]>([{
                     title,
                     data: [newRegister]
@@ -50,7 +53,7 @@ export function useWaterRegister () {
             return store
         }
 
-        const storeUpdated = store.map(register => {
+        const storeUpdated = store?.map(register => {
             if(register.title === title) {
                 register.data.push(newRegister);
             }
@@ -60,7 +63,13 @@ export function useWaterRegister () {
 
         setRegister(storeUpdated);
 
-        setWaterIngestedToday(prev => prev + amount);
+        setWaterIngestedToday(prev => prev ? prev + amount : amount);
+    }
+
+    const clearWaterIngestedRegister = async () => {
+        await deleteRegister();
+
+        setWaterIngestedToday(0);
     }
 
     useEffect(() => {
@@ -69,6 +78,7 @@ export function useWaterRegister () {
 
     return {
         waterIngestedToday,
-        newWaterIngested
+        newWaterIngested,
+        clearWaterIngestedRegister
     }
 }
