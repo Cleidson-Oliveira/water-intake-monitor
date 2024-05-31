@@ -20,7 +20,7 @@ export default function App() {
     return (
         <View style={generalStyles.container}>
             
-            <WaterAmountCounter waterAmount={waterIngestedToday} />
+            <WaterAmountCounter waterAmount={waterIngestedToday ?? 0} />
 
             <Button onPress={() => newWaterIngested(100)}>
                 bebi água
