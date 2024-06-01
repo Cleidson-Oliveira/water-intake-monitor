@@ -40,28 +40,35 @@ export function useWaterRegister () {
 
         if (store instanceof AppError) {
 
-            if (store.cause === "unstored") {
+            setWaterIngestedToday(amount);
 
-                setWaterIngestedToday(amount);
-
-                return setRegister<WaterIngestedRegister[]>([{
-                    title,
-                    data: [newRegister]
-                }])
-            }
-
-            return store
+            return setRegister<WaterIngestedRegister[]>([{
+                title,
+                data: [newRegister]
+            }])
         }
 
-        const storeUpdated = store?.map(register => {
-            if(register.title === title) {
-                register.data.push(newRegister);
-            }
+        const storeIndex = store.findIndex(register => register.title === title)
 
-            return register;
-        })
+        if (storeIndex >= 0) {
+            const storeUpdated = store?.map(register => {
+                if(register.title === title) {
+                    register.data.push(newRegister);
+                }
+    
+                return register;
+            })
+    
+            setRegister(storeUpdated);
+        } else {
+            store.push({
+                title,
+                data: [newRegister]
+            })
 
-        setRegister(storeUpdated);
+            setRegister(store);
+        }
+
 
         setWaterIngestedToday(prev => prev ? prev + amount : amount);
     }
