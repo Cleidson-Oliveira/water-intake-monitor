@@ -30,6 +30,28 @@ export function useWaterRegister () {
         setWaterIngestedToday(waterIngestedToday);
     }
 
+    const getLastWeekHydratationRecords = async (): Promise<number[]> => {
+        const store = await getRegister<WaterIngestedRegister[]>();
+
+        const weekData: number[] = [];
+        
+        if(store instanceof AppError) return new Array(7).fill(0);
+
+        for(var i = 0; i < 7; i++) {
+            const date = new Date();
+
+            const title = new Intl.DateTimeFormat("pt-BR").format(date.setDate(date.getDate() - i));
+
+            const waterAmount = store
+            .find(data => data.title === title)?.data
+            .reduce((acc, cur) => acc + cur.amount, 0) ?? 0;
+
+            weekData.unshift(waterAmount);            
+        }
+
+        return weekData;
+    }
+
     const newWaterIngested = async (amount: number) => {
 
         const title = new Intl.DateTimeFormat('pt-BR').format(new Date());
@@ -40,28 +62,35 @@ export function useWaterRegister () {
 
         if (store instanceof AppError) {
 
-            if (store.cause === "unstored") {
+            setWaterIngestedToday(amount);
 
-                setWaterIngestedToday(amount);
-
-                return setRegister<WaterIngestedRegister[]>([{
-                    title,
-                    data: [newRegister]
-                }])
-            }
-
-            return store
+            return setRegister<WaterIngestedRegister[]>([{
+                title,
+                data: [newRegister]
+            }])
         }
 
-        const storeUpdated = store?.map(register => {
-            if(register.title === title) {
-                register.data.push(newRegister);
-            }
+        const storeIndex = store.findIndex(register => register.title === title)
 
-            return register;
-        })
+        if (storeIndex >= 0) {
+            const storeUpdated = store?.map(register => {
+                if(register.title === title) {
+                    register.data.push(newRegister);
+                }
+    
+                return register;
+            })
+    
+            setRegister(storeUpdated);
+        } else {
+            store.push({
+                title,
+                data: [newRegister]
+            })
 
-        setRegister(storeUpdated);
+            setRegister(store);
+        }
+
 
         setWaterIngestedToday(prev => prev ? prev + amount : amount);
     }
@@ -79,6 +108,7 @@ export function useWaterRegister () {
     return {
         waterIngestedToday,
         newWaterIngested,
-        clearWaterIngestedRegister
+        clearWaterIngestedRegister,
+        getLastWeekHydratationRecords
     }
 }

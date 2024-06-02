@@ -3,7 +3,7 @@
     "name": "Water Intake Monitor",
     "slug": "water-intake-monitor",
     "scheme": "water-intake-monitor",
-    "version": "1.0.1",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.cleidsonoliveira.waterintakemonitor"
     },
     "web": {
       "favicon": "./assets/favicon.png"

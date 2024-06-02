@@ -11,7 +11,7 @@ export function Button ({children, style, textStyle, ...props}: ButtonProps) {
         <TouchableOpacity
             {...props}
             activeOpacity={0.8}
-            style={[ buttonStyle.button, style ]}
+            style={[ buttonStyle.button, style, props.disabled && buttonStyle.buttonDisabled ]}
         >
             <Text style={[ buttonStyle.text, textStyle ]}>
                 {children}
@@ -23,10 +23,14 @@ export function Button ({children, style, textStyle, ...props}: ButtonProps) {
 const buttonStyle = StyleSheet.create({
     button: {
         width: "60%",
+        flex: 1,
         padding: 12,
         paddingHorizontal: 16,
         borderRadius: 4,
         backgroundColor: colors["blue-900"],
+    },
+    buttonDisabled: {
+        backgroundColor: colors["gray-900"],        
     },
     text: {
         color: "white",
