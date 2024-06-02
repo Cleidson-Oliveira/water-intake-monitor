@@ -28,6 +28,13 @@ export default function () {
                     }}
                 />
                 <Tabs.Screen
+                    name="history"
+                    options={{
+                        title: "History",
+                        tabBarIcon: ({ color }) => <FontAwesome size={28} name="clock-o" color={color} />,
+                    }}
+                />
+                <Tabs.Screen
                     name="settings"
                     options={{
                         title: "Settings",

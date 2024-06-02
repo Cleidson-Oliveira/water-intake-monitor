@@ -46,7 +46,6 @@ export function useAppSettings () {
     }
 
     useFocusEffect(useCallback(() => {
-        console.log("chambrou")
         getSettings();
     }, []));
 
