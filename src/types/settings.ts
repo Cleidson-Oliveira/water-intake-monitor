@@ -1,3 +1,4 @@
 export interface TSettings {
-    cupSize?: number
+    cupSize: number
+    dailyGoal: number
 }

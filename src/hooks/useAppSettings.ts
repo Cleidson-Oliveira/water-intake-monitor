@@ -3,10 +3,8 @@ import { useRepository } from "./useRepository";
 import { TSettings } from "types/settings";
 import { AppError } from "models/AppError";
 import { Settings } from "models/Settings";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useFocusEffect } from "expo-router";
-
-
 
 export function useAppSettings () {
     const { getRegister, setRegister } = useRepository(WIM_SETTINGS_KEY);
@@ -23,7 +21,7 @@ export function useAppSettings () {
             return setAppSettings(settings);
         }
 
-        setAppSettings(settings)
+        setAppSettings(new Settings(settings));
     }
 
     const setSettings = async (newSettings: TSettings) => {

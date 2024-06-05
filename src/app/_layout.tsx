@@ -8,13 +8,13 @@ export default function () {
         <>
             <Tabs 
                 screenOptions={{
-                    tabBarActiveTintColor: colors["blue-900"],
-                    tabBarInactiveTintColor: colors["gray-500"],
+                    tabBarActiveTintColor: colors["blue-300"],
+                    tabBarInactiveTintColor: colors["blue-700"],
                     headerShown: false,
                     tabBarItemStyle: {padding: 8},
                     tabBarLabelStyle: {fontWeight: "bold"},
                     tabBarStyle: {
-                        backgroundColor: colors["blue-300"],
+                        backgroundColor: colors["blue-900"],
                         height: 60,                        
                     },
                 }}

@@ -6,8 +6,9 @@ export const generalStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors["blue-100"],
         alignItems: "center",
-        justifyContent: "center",
-        gap: 20
+        gap: 20,
+        padding: 10,
+        paddingTop: 60,
     },
     text: {
         color: "white",
