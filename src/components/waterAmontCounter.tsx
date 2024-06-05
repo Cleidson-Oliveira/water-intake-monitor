@@ -20,7 +20,7 @@ const style = StyleSheet.create({
     container: {
         width: 300,
         height: 300,
-        backgroundColor: colors["blue-700"],
+        backgroundColor: colors["blue-900"],
         borderRadius: 150,
         justifyContent: "center",
         alignItems: "center",

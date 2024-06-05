@@ -1,5 +1,7 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
+import { AbstractChartConfig } from "react-native-chart-kit/dist/AbstractChart";
+import { colors } from "styles/colors";
 
 interface ChartProps {
     labels: string[]
@@ -9,18 +11,17 @@ interface ChartProps {
 export function Chart ({ labels, data }: ChartProps) {
 
     return (
-        <LineChart
-            data={{
-                labels,
-                datasets: [{ data }]
-            }}
-            width={Dimensions.get("window").width - 20}
-            height={200}
-            yAxisSuffix="ml"
-            chartConfig={chartConfig}
-            bezier
-            style={styles.chartContainer}
-        />
+        <View style={{paddingTop: 20, backgroundColor: colors["blue-900"], borderRadius: 8}}>
+            <LineChart
+                data={{ labels, datasets: [{ data }] }}
+                width={Dimensions.get("window").width - 20}
+                height={280}    
+                yAxisSuffix="ml"
+                chartConfig={chartConfig}
+                bezier
+                style={styles.chartContainer}
+            />
+        </View>
     )
 }
 
@@ -31,9 +32,9 @@ const styles = StyleSheet.create({
     }
 })
 
-const chartConfig = {
-    backgroundGradientFrom: "#0004fb",
-    backgroundGradientTo: "#2672ff",
+const chartConfig:AbstractChartConfig = {
+    backgroundGradientFrom: colors["blue-900"],
+    backgroundGradientTo: colors["blue-900"],
     decimalPlaces: 0,
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,

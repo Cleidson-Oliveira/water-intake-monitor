@@ -1,4 +1,5 @@
 import { Chart } from "components/chart";
+import { WaterCuriosityCard } from "components/waterCuriosityCard";
 import { useWaterRegister } from "hooks/useWaterRegister";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
@@ -27,9 +28,9 @@ export default function Hystory () {
 
     return (
         <View style={generalStyles.container}>
+            <WaterCuriosityCard />
             { loadingData && <ActivityIndicator size="large" color={colors["blue-900"]} />}
             { !loadingData && <Chart labels={DAYS_OF_WEEK} data={weekHydratationRecords}/>}
-
         </View>
     )
 }

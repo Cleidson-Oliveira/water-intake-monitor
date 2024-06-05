@@ -15,7 +15,7 @@ export default function Settings (props: SettingsProps) {
 
     return (
         <View style={generalStyles.container}>
-            <View style={{width: "80%"}}>
+            <View style={{width: "100%"}}>
                 <Text>
                     Quantidade (ml)
                 </Text>

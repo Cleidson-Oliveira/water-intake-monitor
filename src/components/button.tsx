@@ -30,7 +30,7 @@ const buttonStyle = StyleSheet.create({
         backgroundColor: colors["blue-900"],
     },
     buttonDisabled: {
-        backgroundColor: colors["gray-900"],        
+        backgroundColor: colors["gray-700"],        
     },
     text: {
         color: "white",
