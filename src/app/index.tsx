@@ -1,4 +1,5 @@
 import { Button } from "components/button";
+import { DailyGoalsMeter } from "components/dailyGoalsMeter";
 import { WaterAmountCounter } from "components/waterAmontCounter";
 import { WaterCuriosityCard } from "components/waterCuriosityCard";
 import { useAppSettings } from "hooks/useAppSettings";
@@ -22,6 +23,8 @@ export default function App() {
 
     return (
         <View style={generalStyles.container}>
+
+            <DailyGoalsMeter waterIngestedToday={waterIngestedToday ?? 0}/>
 
             <WaterCuriosityCard />
             
