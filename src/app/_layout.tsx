@@ -8,8 +8,8 @@ export default function () {
         <>
             <Tabs 
                 screenOptions={{
-                    tabBarActiveTintColor: colors["blue-300"],
-                    tabBarInactiveTintColor: colors["blue-700"],
+                    tabBarActiveTintColor: "#ffffffaa",
+                    tabBarInactiveTintColor: "#00000050",
                     headerShown: false,
                     tabBarItemStyle: {padding: 8},
                     tabBarLabelStyle: {fontWeight: "bold"},
@@ -18,26 +18,25 @@ export default function () {
                         height: 60,                        
                     },
                 }}
-
             >
                 <Tabs.Screen
                     name="index"
                     options={{
-                        title: "Home",
+                        title: "Início",
                         tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
                     }}
                 />
                 <Tabs.Screen
                     name="history"
                     options={{
-                        title: "History",
+                        title: "Histórico",
                         tabBarIcon: ({ color }) => <FontAwesome size={28} name="clock-o" color={color} />,
                     }}
                 />
                 <Tabs.Screen
                     name="settings"
                     options={{
-                        title: "Settings",
+                        title: "Configurações",
                         tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
                     }}
                 />

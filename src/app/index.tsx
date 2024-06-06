@@ -1,5 +1,6 @@
 import { Button } from "components/button";
 import { DailyGoalsMeter } from "components/dailyGoalsMeter";
+import { Header } from "components/header";
 import { WaterAmountCounter } from "components/waterAmontCounter";
 import { WaterCuriosityCard } from "components/waterCuriosityCard";
 import { useAppSettings } from "hooks/useAppSettings";
@@ -24,9 +25,11 @@ export default function App() {
     return (
         <View style={generalStyles.container}>
 
-            <DailyGoalsMeter waterIngestedToday={waterIngestedToday ?? 0}/>
+            <Header title="Início" />
 
             <WaterCuriosityCard />
+
+            <DailyGoalsMeter waterIngestedToday={waterIngestedToday ?? 0}/>
             
             <View style={{flex: 1, justifyContent: "center", alignItems: "center", gap: 30}}>
                 

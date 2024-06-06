@@ -16,15 +16,15 @@ export function DailyGoalsMeter (props: DailyGoalsMeterProps) {
         let colorStatus = "#ff0000"
 
         if(dailyGoalPercentage > 20 && dailyGoalPercentage < 40) {
-            colorStatus = "#d4002b"
+            colorStatus = "#fd0262"
         }
         
         if(dailyGoalPercentage > 40 && dailyGoalPercentage < 60) {
-            colorStatus = "#a90056"
+            colorStatus = "#fd02b2"
         }
         
         if(dailyGoalPercentage > 60 && dailyGoalPercentage < 80) {
-            colorStatus = "#760089"
+            colorStatus = "#8c02fd"
         }
  
         if(dailyGoalPercentage > 80) {
@@ -33,8 +33,6 @@ export function DailyGoalsMeter (props: DailyGoalsMeterProps) {
 
         return colorStatus;
     }
-
-    console.log(dailyGoalPercentage, settings, props)
 
     return (
         <View style={style.container}>

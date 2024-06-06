@@ -1,5 +1,6 @@
 import { Chart } from "components/chart";
 import { DailyGoalsMeter } from "components/dailyGoalsMeter";
+import { Header } from "components/header";
 import { WaterCuriosityCard } from "components/waterCuriosityCard";
 import { useWaterRegister } from "hooks/useWaterRegister";
 import { useEffect, useState } from "react";
@@ -27,13 +28,22 @@ export default function Hystory () {
 
     const loadingData = weekHydratationRecords === undefined;
 
+    if(loadingData) {
+        return (
+            <View style={[generalStyles.container, {justifyContent: "center"}]}>
+                <ActivityIndicator size="large" color={colors["blue-900"]} />
+            </View>
+        )
+    }
+
     return (
         <View style={generalStyles.container}>
-            <DailyGoalsMeter waterIngestedToday={waterIngestedToday ?? 0}/>
+            <Header title="Histórico" />
 
             <WaterCuriosityCard />
-            
-            { loadingData && <ActivityIndicator size="large" color={colors["blue-900"]} />}
+
+            <DailyGoalsMeter waterIngestedToday={waterIngestedToday ?? 0}/>
+    
             { !loadingData && <Chart labels={DAYS_OF_WEEK} data={weekHydratationRecords}/>}
         </View>
     )
