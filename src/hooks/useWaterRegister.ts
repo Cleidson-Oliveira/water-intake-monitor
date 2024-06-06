@@ -1,10 +1,11 @@
-import { useEffect, useId, useState } from "react";
+import { useCallback, useState } from "react";
 import { useRepository } from "./useRepository";
 import { WIM_WATER_INGESTED_KEY } from "constants/storeKeys";
-import { WaterIngestedRegister, WaterIngestedRegisterData } from "types/waterIntakeRegister";
+import { WaterIngestedRegister } from "types/waterIntakeRegister";
 import { AppError } from "models/AppError";
 import { waterIntakeTodayReducer } from "reducers/waterIntakeTodayReducer";
 import { WaterIntake } from "models/WaterIntake";
+import { useFocusEffect } from "expo-router";
 
 export function useWaterRegister () {
 
@@ -101,9 +102,9 @@ export function useWaterRegister () {
         setWaterIngestedToday(0);
     }
 
-    useEffect(() => {
+    useFocusEffect(useCallback(() => {
         getWaterIngestedToday();
-    }, [])
+    }, []));
 
     return {
         waterIngestedToday,
