@@ -42,7 +42,7 @@ export function DailyGoalsMeter (props: DailyGoalsMeterProps) {
             }]}></View>
             <View style={style.content}>
                 <Text style={style.text}>Meta diária: {settings?.dailyGoal}ml</Text>
-                <Text style={style.text}>{dailyGoalPercentage}%</Text>
+                <Text style={style.text}>{dailyGoalPercentage.toFixed(2)}%</Text>
             </View>
         </View>
     )
