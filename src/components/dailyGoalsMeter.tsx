@@ -15,19 +15,19 @@ export function DailyGoalsMeter (props: DailyGoalsMeterProps) {
     const selectColorStatus = () => {
         let colorStatus = "#ff0000"
 
-        if(dailyGoalPercentage > 20 && dailyGoalPercentage < 40) {
+        if(dailyGoalPercentage >= 20 && dailyGoalPercentage < 40) {
             colorStatus = "#fd0262"
         }
         
-        if(dailyGoalPercentage > 40 && dailyGoalPercentage < 60) {
+        if(dailyGoalPercentage >= 40 && dailyGoalPercentage < 60) {
             colorStatus = "#fd02b2"
         }
         
-        if(dailyGoalPercentage > 60 && dailyGoalPercentage < 80) {
+        if(dailyGoalPercentage >= 60 && dailyGoalPercentage < 80) {
             colorStatus = "#8c02fd"
         }
  
-        if(dailyGoalPercentage > 80) {
+        if(dailyGoalPercentage >= 80) {
             colorStatus = "#0000ff"
         }
 
@@ -42,7 +42,7 @@ export function DailyGoalsMeter (props: DailyGoalsMeterProps) {
             }]}></View>
             <View style={style.content}>
                 <Text style={style.text}>Meta diária: {settings?.dailyGoal}ml</Text>
-                <Text style={style.text}>{dailyGoalPercentage}%</Text>
+                <Text style={style.text}>{dailyGoalPercentage.toFixed(2)}%</Text>
             </View>
         </View>
     )
