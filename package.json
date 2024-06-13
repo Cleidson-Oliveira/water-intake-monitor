@@ -26,7 +26,8 @@
     "react-native-svg": "^15.3.0",
     "react-native-svg-transformer": "^1.4.0",
     "typescript": "~5.3.3",
-    "@react-native-community/slider": "4.5.2"
+    "@react-native-community/slider": "4.5.2",
+    "expo-notifications": "~0.28.9"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
