@@ -1,7 +1,9 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { colors } from "styles/colors";
+import { memo } from "react";
 import Doctors from "assets/doctors.svg";
 
-export function WaterCuriosityCard () {
+function WaterCuriosityCardComponent () {
 
     const waterCuriosities = [
         "A água é vital para manter as funções corporais, como a regulação da temperatura, digestão e transporte de nutrientes.",
@@ -28,9 +30,6 @@ export function WaterCuriosityCard () {
     )
 }
 
-import { StyleSheet } from "react-native";
-import { colors } from "styles/colors";
-
 export const styles = StyleSheet.create({
     container: {
         width: "100%",
@@ -52,3 +51,5 @@ export const styles = StyleSheet.create({
         fontSize: 18,
     }
 })
+
+export const WaterCuriosityCard = memo(WaterCuriosityCardComponent)

@@ -3,16 +3,21 @@ import { Button } from "components/button";
 import { Header } from "components/header";
 import { InputRange } from "components/slider";
 import { useAppSettings } from "hooks/useAppSettings";
+import { useNotification } from "hooks/useNotification";
 import { Settings } from "models/Settings";
 import { ActivityIndicator, Text, View } from "react-native";
 import { generalStyles } from "styles";
 import { colors } from "styles/colors";
 
-interface SettingsProps {}
-
-export default function SettingsScreen (props: SettingsProps) {
+export default function SettingsScreen () {
 
     const {settings, setSettings} = useAppSettings();
+    const {
+        cancelNotifications,
+        setNotification,
+        notificationPermissions,
+        getNotificationsPermission
+    } = useNotification();
 
     const updateCupSizeSetting = (cupSize: number) => {
         const updateSetting = new Settings({...settings, cupSize});
@@ -24,9 +29,20 @@ export default function SettingsScreen (props: SettingsProps) {
         setSettings(updateSetting);
     }
 
-    const loading = settings === undefined;
+    const updateNotificationSettings = () => {
+        const newNotificationSetting: boolean = !settings?.notifications;
 
-    if(loading) {
+        if (!newNotificationSetting) cancelNotifications();
+        else setNotification();
+
+        const updateSetting = new Settings({...settings, notifications: newNotificationSetting});
+        setSettings(updateSetting);
+    }
+
+    const loadingPermissions = notificationPermissions === undefined;
+    const loadingSettings = settings === undefined;
+
+    if(loadingSettings || loadingPermissions) {
         return (
             <View style={[generalStyles.container, {justifyContent: "center"}]}>
                 <ActivityIndicator size="large" color={colors["blue-900"]} />
@@ -55,6 +71,13 @@ export default function SettingsScreen (props: SettingsProps) {
                     defaultValue={settings.dailyGoal}
                     onChange={updateDailyGoalSetting}
                 />
+                {notificationPermissions && <Button onPress={updateNotificationSettings}>
+                    Notificações: {settings.notifications ? "On" : "Off"}
+                </Button>}
+                
+                {!notificationPermissions && <Button onPress={getNotificationsPermission}>
+                    Permitir receber notificações
+                </Button>}
             </View>
         </View>
     )

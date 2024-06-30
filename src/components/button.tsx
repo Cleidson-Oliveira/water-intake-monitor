@@ -22,8 +22,7 @@ export function Button ({children, style, textStyle, ...props}: ButtonProps) {
 
 const buttonStyle = StyleSheet.create({
     button: {
-        width: "60%",
-        flex: 1,
+        width: "100%",
         padding: 12,
         paddingHorizontal: 16,
         borderRadius: 4,
