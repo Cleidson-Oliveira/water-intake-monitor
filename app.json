@@ -3,7 +3,7 @@
     "name": "Water Intake Monitor",
     "slug": "water-intake-monitor",
     "scheme": "water-intake-monitor",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
